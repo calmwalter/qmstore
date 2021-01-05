@@ -1,6 +1,6 @@
-package qmstore.dao;
+package qmstore.commodity.dao;
 
-import qmstore.pojo.Commodity;
+import qmstore.commodity.pojo.Commodity;
 
 import java.util.ArrayList;
 

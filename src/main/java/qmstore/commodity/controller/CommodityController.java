@@ -1,4 +1,4 @@
-package qmstore.controller;
+package qmstore.commodity.controller;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import org.springframework.web.bind.annotation.*;
-import qmstore.dao.CommodityMapper;
-import qmstore.pojo.Commodity;
+import qmstore.commodity.dao.CommodityMapper;
+import qmstore.commodity.pojo.Commodity;
 
 import java.io.IOException;
 import java.io.InputStream;

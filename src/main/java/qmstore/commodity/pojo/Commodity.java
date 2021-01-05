@@ -1,4 +1,4 @@
-package qmstore.pojo;
+package qmstore.commodity.pojo;
 
 public class Commodity {
     int id;
