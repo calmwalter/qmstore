@@ -12,7 +12,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- 开启注解扫描 -->
-    <context:component-scan base-package="qmstore.commodity.controller"/>
+    <context:component-scan base-package="qmstore.*.controller"/>
+    <context:component-scan base-package="qmstore.*.dao"/>
+
 
     <!-- 视图解析器对象 -->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
