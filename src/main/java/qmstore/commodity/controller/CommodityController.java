@@ -36,6 +36,7 @@ public class CommodityController {
     @PostMapping("/add")
     public Commodity add(@RequestBody Commodity commodity, @DataAuth User user) throws IOException {
         if(user != null){
+
         }
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
