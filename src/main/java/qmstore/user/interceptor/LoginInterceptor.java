@@ -1,76 +1,58 @@
 package qmstore.user.interceptor;
 
+import javax.security.auth.login.LoginContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.executor.parameter.ParameterHandler;
+import org.springframework.core.MethodParameter;
+import org.springframework.web.bind.support.WebDataBinderFactory;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import qmstore.user.annotation.DataAuth;
 import qmstore.user.pojo.User;
+import qmstore.util.UserUtil;
+import sun.plugin2.liveconnect.ArgumentHelper;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter {
+public class LoginInterceptor implements HandlerMethodArgumentResolver {
+
+    /**
+     * 符合条件的注解会进入到当前解析
+     * @param methodParameter
+     * @return
+     */
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-            throws Exception {
-        super.afterCompletion(request, response, handler, ex);
+    public boolean supportsParameter(MethodParameter methodParameter) {
+        return methodParameter.hasParameterAnnotation(DataAuth.class);
     }
 
+    /**
+     * 解析获取对应的数据
+     * @param methodParameter
+     * @param modelAndViewContainer
+     * @param nativeWebRequest
+     * @param webDataBinderFactory
+     * @return
+     * @throws Exception
+     */
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-                           ModelAndView modelAndView) throws Exception {
-        super.postHandle(request, response, handler, modelAndView);
-    }
-
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-            throws Exception {
-        request.setCharacterEncoding("UTF-8");
-        String url = request.getServletPath();
-        System.out.println("post URL："+url);
-
-//        Annotation[][] annotations = ((HandlerMethod) handler).getMethod().getParameterAnnotations();
-
-        Parameter[] parameters = ((HandlerMethod) handler).getMethod().getParameters();
-        for(Parameter parameter : parameters){
-            Annotation[] annotations = parameter.getAnnotations();
-            for(Annotation annotation : annotations){
-                if(annotation.annotationType().equals(DataAuth.class)){
-
-                }
+    public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
+        try{
+            User user = UserUtil.get();
+            if(user == null || user.getUserId() == null || user.getUserId().equals("")){
+                return null;
             }
-        }
-        //参数注解，1维是参数，2维是注解
-//        for (Annotation[] annotation : annotations) {
-//            if (annotation.length == 0) {
-//                continue;
-//            }
-//
-//            for (Annotation ann : annotation) {
-//                if (ann.annotationType().equals(DataAuth.class)) {
-//                    System.out.println("123");
-//                    break;
-//                }
-//            }
-//
-//        }
+            return user;
 
-        if(!url.equals("")){
-            //判断是否已经登录
-            User loginUser = (User)request.getSession().getAttribute("user");
-            if(loginUser == null){
-                //無session則是未登录狀態
-                System.out.println(">>>未登录，請重新登录<<<");
-                response.sendRedirect("../loginAndRegist.jsp");
-                return false;
-            }
+        }catch (RuntimeException e){
+            throw new RuntimeException("获取用户权限信息异常");
         }
-        return true;
     }
-
-
 }

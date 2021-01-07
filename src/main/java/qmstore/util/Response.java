@@ -12,6 +12,9 @@ public class Response<T> {
 
     private static final int CODE_NO_LOGIN = ResponseEnum.NOT_LOGIN_IN.getCode();
 
+    private static final int CODE_FAIL = ResponseEnum.SYSTEM_FAIL.getCode();
+
+
     private int code;
     private String msg;
     private String error;
@@ -34,6 +37,8 @@ public class Response<T> {
 
     public static <T> Response<T> BUSY() {return new Response<>(CODE_BUSY,ResponseEnum.SYSTEM_ERROR.getValue(), null, null);}
 
+    public static <T> Response<T> FAIL() {return new Response<>(CODE_FAIL,ResponseEnum.SYSTEM_FAIL.getValue(), null, null);}
+    public static <T> Response<T> FAIL(String reason) {return new Response<>(CODE_FAIL,ResponseEnum.SYSTEM_FAIL.getValue(), reason, null);}
 
 
 
