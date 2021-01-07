@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import qmstore.activity_category.dao.ActivityCategoryMapper;
 import qmstore.activity_category.pojo.ActivityCategory;
 import qmstore.user.annotation.DataAuth;
+import qmstore.user.constant.DataType;
 import qmstore.user.pojo.User;
 
 import java.io.IOException;
@@ -33,11 +34,13 @@ public class ActivityCategoryController {
 
     @PostMapping("/add")
     public ActivityCategory add(@RequestBody ActivityCategory activityCategory, @DataAuth User user) throws IOException {
-        //TODO 管理员身份验证
+        //管理员身份验证
         if(user==null){
             return null;
         }
-
+        if(user.getUserType()!= DataType.ADMIN){
+            return null;
+        }
         //TODO 时间戳活动id创建
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -54,8 +57,14 @@ public class ActivityCategoryController {
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody ActivityCategory activityCategory) throws IOException {
-        //TODO 管理员身份验证
+    public void update(@RequestBody ActivityCategory activityCategory,@DataAuth User user) throws IOException {
+        // 管理员身份验证
+        if(user==null){
+            return ;
+        }
+        if(user.getUserType()!= DataType.ADMIN){
+            return ;
+        }
         //TODO 活动种类存在校验
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -69,7 +78,14 @@ public class ActivityCategoryController {
     }
 
     @GetMapping("/delete")
-    public void delete(@RequestParam("id") int id) throws IOException {
+    public void delete(@RequestParam("id") int id,@DataAuth User user) throws IOException {
+        // 管理员身份验证
+        if(user==null){
+            return ;
+        }
+        if(user.getUserType()!= DataType.ADMIN){
+            return ;
+        }
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();

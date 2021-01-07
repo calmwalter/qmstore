@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="qmstore.banner_goods.dao.BannerGoodsMapper">
-    <select id="findAll" resultType="qmstore.banner_goods.pojo.BannerGoodsMapper">select  *from banner_goods;</select>
+    <select id="findAll" resultType="qmstore.banner_goods.pojo.BannerGoods">select  *from banner_goods;</select>
 
-    <insert id="add" parameterType="qmstore.banner_goods.pojo.BannerGoodsMapper" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into banner_goods(goods_id, pic_url,create_time,update_time)values(#{goods_id},#{pic_url}, #{category}, #{create_time},#{update_time});</insert>
-    <update id="update" parameterType="qmstore.banner_goods.pojo.BannerGoodsMapper">update banner_goods set pic_url = #{pic_url},update_time=#{update_time} where id = #{id};
+    <insert id="add" parameterType="qmstore.banner_goods.pojo.BannerGoods" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into banner_goods(goods_id, pic_url,create_time,update_time)values(#{goods_id},#{pic_url}, #{category}, #{create_time},#{update_time});</insert>
+    <update id="update" parameterType="qmstore.banner_goods.pojo.BannerGoods">update banner_goods set pic_url = #{pic_url},update_time=#{update_time} where id = #{id};
     </update>
     <delete id="delete">delete from banner_goods where id=#{id};</delete>
     <delete id="find">select * from banner_goods where id=#{id};</delete>

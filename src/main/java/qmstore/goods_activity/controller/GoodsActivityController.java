@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import qmstore.goods_activity.dao.GoodsActivityMapper;
 import qmstore.goods_activity.pojo.GoodsActivity;
+import qmstore.user.annotation.DataAuth;
+import qmstore.user.constant.DataType;
+import qmstore.user.pojo.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,8 +35,15 @@ public class GoodsActivityController {
     }
 
     @PostMapping("/add")
-    public GoodsActivity add(@RequestBody GoodsActivity goodsActivity) throws IOException {
-        //TODO 管理员身份验证
+    public GoodsActivity add(@RequestBody GoodsActivity goodsActivity, @DataAuth User user) throws IOException {
+        //管理员身份验证
+        if(user==null){
+            return null;
+        }
+        if(user.getUserType()!= DataType.ADMIN){
+            return null;
+        }
+
         //TODO 时间戳活动id创建
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -50,8 +60,14 @@ public class GoodsActivityController {
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody GoodsActivity goodsActivity) throws IOException {
-        //TODO 管理员身份验证
+    public void update(@RequestBody GoodsActivity goodsActivity,@DataAuth User user) throws IOException {
+        //管理员身份验证
+        if(user==null){
+            return ;
+        }
+        if(user.getUserType()!= DataType.ADMIN){
+            return ;
+        }
         //TODO 活动种类存在校验
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -65,7 +81,14 @@ public class GoodsActivityController {
     }
 
     @GetMapping("/delete")
-    public void delete(@RequestParam("id") int id) throws IOException {
+    public void delete(@RequestParam("id") int id,@DataAuth User user) throws IOException {
+        //管理员身份验证
+        if(user==null){
+            return ;
+        }
+        if(user.getUserType()!= DataType.ADMIN){
+            return ;
+        }
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
