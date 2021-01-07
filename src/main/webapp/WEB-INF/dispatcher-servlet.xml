@@ -28,6 +28,10 @@
             <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
+
+        <mvc:argument-resolvers>
+            <bean class="qmstore.user.interceptor.LoginArgumentResolver"/>
+        </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
 </beans>

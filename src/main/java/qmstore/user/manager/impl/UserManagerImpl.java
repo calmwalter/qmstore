@@ -1,5 +1,6 @@
 package qmstore.user.manager.impl;
 
+import cn.hutool.core.date.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -42,11 +43,14 @@ public class UserManagerImpl implements UserManager {
                 System.out.println("userId = " + userId);
                 User user = this.getUser(userId);
                 System.out.println("user = " + user);
-                if (user.getUserGroup().equals("CUSTOMER")) {
+                if (user.getUserGroup().equals("CUSTOMER") || user.getUserGroup().equals("normal")) {
+                    System.out.println("user is customer");
                     user.setUserType(DataType.CUSTOMER);
                 }
+//                user.setCreateDate(DateUtil.date(user.getCreateTime()));
+//                user.setUpdateDate(DateUtil.date(user.getUpdateDate()));
                 UserUtil.set(user);
-                return Response.SUCCESS();
+                return Response.SUCCESS(user);
             }
             return Response.ERROR("账号或密码错误");
         }catch (Exception e){

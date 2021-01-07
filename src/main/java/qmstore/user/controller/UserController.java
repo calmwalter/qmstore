@@ -1,12 +1,11 @@
 package qmstore.user.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import qmstore.user.annotation.DataAuth;
 import qmstore.user.condition.LoginCondition;
 import qmstore.user.condition.RegisterCondition;
 import qmstore.user.manager.impl.UserManagerImpl;
+import qmstore.user.pojo.User;
 import qmstore.util.Response;
 
 import javax.annotation.Resource;
@@ -19,12 +18,17 @@ public class UserController {
 
     @PostMapping("/login")
     public Response userLogin(@RequestBody LoginCondition loginCondition){
-        System.out.println("123123");
         try {
             return userManager.UserLogin(loginCondition.getUserId(), loginCondition.getPassword());
         }catch (Exception e){
             return Response.ERROR(e.getMessage());
         }
+    }
+
+    @GetMapping("checkLoginStatus")
+    public Response checkLoginStatus(@DataAuth User dataAuth){
+        System.out.println("dataAuth = " + dataAuth);
+        return Response.SUCCESS(dataAuth);
     }
 
     @PostMapping("register")

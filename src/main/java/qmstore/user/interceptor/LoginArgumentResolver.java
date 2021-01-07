@@ -14,10 +14,8 @@ import qmstore.user.annotation.DataAuth;
 import qmstore.user.pojo.User;
 import qmstore.util.UserUtil;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Parameter;
 
-public class LoginInterceptor implements HandlerMethodArgumentResolver {
+public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
 
     /**
      * 符合条件的注解会进入到当前解析
@@ -41,7 +39,9 @@ public class LoginInterceptor implements HandlerMethodArgumentResolver {
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
         try{
+            System.out.println("resolveArgument");
             User user = UserUtil.get();
+            System.out.println("user = " + user);
             if(user == null || user.getUserId() == null || user.getUserId().equals("")){
                 return null;
             }
