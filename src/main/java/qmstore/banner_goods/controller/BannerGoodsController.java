@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-@Controller
+@RestController
 @RequestMapping("/banner_goods")
 public class BannerGoodsController {
     private String resource = "mybatis-config.xml";

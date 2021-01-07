@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-@Controller
+@RestController
 @RequestMapping("/goods_detail")
 public class  GoodsDetailController {
     private String resource = "mybatis-config.xml";
@@ -67,7 +67,7 @@ public class  GoodsDetailController {
     }
 
     @GetMapping("/delete")
-    public void delete(@RequestParam("id") int id) throws IOException {
+    public void delete(@RequestParam("id") String id) throws IOException {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -80,13 +80,13 @@ public class  GoodsDetailController {
     }
 
     @GetMapping("/find")
-    public GoodsDetail find(@RequestParam("id") int id) throws IOException {
+    public ArrayList<GoodsDetail> find(@RequestParam("id") String id) throws IOException {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         GoodsDetailMapper goodsDetailMapper = sqlSession.getMapper(GoodsDetailMapper.class);
 
-        GoodsDetail res = goodsDetailMapper.find(id);
+        ArrayList<GoodsDetail> res = goodsDetailMapper.find(id);
         sqlSession.commit();
         sqlSession.close();
         inputStream.close();

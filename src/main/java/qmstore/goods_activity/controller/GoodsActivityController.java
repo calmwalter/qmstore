@@ -4,10 +4,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import qmstore.goods_activity.dao.GoodsActivityMapper;
 import qmstore.goods_activity.pojo.GoodsActivity;
@@ -19,6 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+@RestController
+@RequestMapping("/goods_activity")
 public class GoodsActivityController {
     private String resource = "mybatis-config.xml";
 

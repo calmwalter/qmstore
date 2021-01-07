@@ -9,6 +9,6 @@
     <insert id="add" parameterType="qmstore.goods_detail.pojo.GoodsDetail" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into goods_detail(goods_id, goods_name,goods_category_code,goods_category_name,goods_price,goods_discount,brief_desc,detail_desc,pic_url,create_time,update_time)values(#{goods_id},#{goods_name},#{goods_category_code},#{goods_category_name},#{goods_price},#{goods_discount},#{brief_desc},#{detail_desc},#{pic_url}, #{create_time},#{update_time});</insert>
     <update id="update" parameterType="qmstore.goods_detail.pojo.GoodsDetail">update goods_detail set goods_id = #{goods_id},goods_name = #{goods_name}, goods_category_code = #{goods_category_code},goods_category_name = #{goods_category_name},goods_price = #{goods_price},goods_discount = #{goods_discount},brief_desc = #{brief_desc},detail_desc = #{detail_desc},pic_url = #{pic_url},update_time=#{update_time} where id = #{id};
     </update>
-    <delete id="delete">delete from goods_detail where id=#{id};</delete>
-    <delete id="find">select * from goods_detail where id=#{id};</delete>
+    <delete id="delete">delete from goods_detail where goods_id=#{goods_id};</delete>
+    <select id="find" resultType="qmstore.goods_detail.pojo.GoodsDetail">select * from goods_detail where goods_id=#{goods_id};</select>
 </mapper>
