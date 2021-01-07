@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.web.bind.annotation.*;
 import qmstore.commodity.dao.CommodityMapper;
 import qmstore.commodity.pojo.Commodity;
+import qmstore.user.annotation.DataAuth;
+import qmstore.user.pojo.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +34,10 @@ public class CommodityController {
     }
 
     @PostMapping("/add")
-    public Commodity add(@RequestBody Commodity commodity) throws IOException {
+    public Commodity add(@RequestBody Commodity commodity, @DataAuth User user) throws IOException {
+        if(user != null){
+
+        }
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
