@@ -2,6 +2,7 @@ package qmstore.user.pojo;
 
 import cn.hutool.core.date.DateUtil;
 import lombok.Data;
+import qmstore.user.constant.DataType;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -13,6 +14,7 @@ public class User {
     private String password;
     private String phone;
     private String email;
+    private DataType userType;
     //时间戳
     private Timestamp createTime;
     private Timestamp updateTime;
