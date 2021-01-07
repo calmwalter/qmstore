@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class GoodsDetail {
     int id;
+    String goods_id;
     String goods_name;
     String goods_category_code;
     String goods_category_name;
@@ -15,10 +16,20 @@ public class GoodsDetail {
     Timestamp create_time;
     Timestamp update_time;
 
+    public String getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(String goods_id) {
+        this.goods_id = goods_id;
+    }
+
+
     @Override
     public String toString() {
         return "GoodsDetail{" +
                 "id=" + id +
+                ", goods_id='" + goods_id + '\'' +
                 ", goods_name='" + goods_name + '\'' +
                 ", goods_category_code='" + goods_category_code + '\'' +
                 ", goods_category_name='" + goods_category_name + '\'' +

@@ -40,6 +40,7 @@ public class  GoodsDetailController {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         GoodsDetailMapper goodsDetailMapper = sqlSession.getMapper(GoodsDetailMapper.class);
+        goodsDetail.setGoods_id("0002"+System.currentTimeMillis());
 
         goodsDetailMapper.add(goodsDetail);
         sqlSession.commit();

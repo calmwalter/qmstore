@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.web.bind.annotation.*;
 import qmstore.activity_category.dao.ActivityCategoryMapper;
 import qmstore.activity_category.pojo.ActivityCategory;
+import qmstore.user.annotation.DataAuth;
+import qmstore.user.pojo.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,14 +32,18 @@ public class ActivityCategoryController {
     }
 
     @PostMapping("/add")
-    public ActivityCategory add(@RequestBody ActivityCategory activityCategory) throws IOException {
+    public ActivityCategory add(@RequestBody ActivityCategory activityCategory, @DataAuth User user) throws IOException {
         //TODO 管理员身份验证
+        if(user==null){
+            return null;
+        }
+
         //TODO 时间戳活动id创建
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
-
+        activityCategory.setActivity_id("0001"+System.currentTimeMillis());
         activityCategoryMapper.add(activityCategory);
         sqlSession.commit();
         sqlSession.close();
