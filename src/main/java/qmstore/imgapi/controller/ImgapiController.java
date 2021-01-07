@@ -28,7 +28,8 @@ import qmstore.commodity.dao.CommodityMapper;
 @RestController
 @RequestMapping("/imgapi")
 public class ImgapiController {
-
+    String secretId = " ";
+    String secretKey = " ";
     private String resource = "mybatis-config.xml";
 
 
@@ -40,8 +41,7 @@ public class ImgapiController {
         String neededKey=null;
 
         // 1 初始化用户身份信息（secretId, secretKey）。
-        String secretId = "AKIDINQEmJv6D2lR4SjUVQ5UXp1xd5uq7AjZ";
-        String secretKey = "lCUWCxDNGw1vcFihLrSvGMUzPc7kSFyT";
+
         COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
         // 2 设置 bucket 的区域, COS 地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
         // clientConfig 中包含了设置 region, https(默认 http), 超时, 代理等 set 方法, 使用可参见源码或者常见问题 Java SDK 部分。
@@ -145,8 +145,7 @@ public class ImgapiController {
         System.out.println("hello");
 
         // 1 初始化用户身份信息（secretId, secretKey）。
-        String secretId = "AKIDINQEmJv6D2lR4SjUVQ5UXp1xd5uq7AjZ";
-        String secretKey = "lCUWCxDNGw1vcFihLrSvGMUzPc7kSFyT";
+
         COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
         // 2 设置 bucket 的区域, COS 地域的简称请参照 https://cloud.tencent.com/document/product/436/6224
         // clientConfig 中包含了设置 region, https(默认 http), 超时, 代理等 set 方法, 使用可参见源码或者常见问题 Java SDK 部分。
