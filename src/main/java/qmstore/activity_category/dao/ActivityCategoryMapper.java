@@ -8,6 +8,6 @@ public interface ActivityCategoryMapper {
     ArrayList<ActivityCategory> findAll();
     void add(ActivityCategory activityCategory);
     int update(ActivityCategory activityCategory);
-    int delete(int id);
-    ActivityCategory find(int id);
+    int delete(String id);
+    ActivityCategory find(String id);
 }

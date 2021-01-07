@@ -10,5 +10,5 @@
     <update id="update" parameterType="qmstore.banner_goods.pojo.BannerGoods">update banner_goods set pic_url = #{pic_url},update_time=#{update_time} where id = #{id};
     </update>
     <delete id="delete">delete from banner_goods where id=#{id};</delete>
-    <delete id="find">select * from banner_goods where id=#{id};</delete>
+    <select id="find" resultType="qmstore.banner_goods.pojo.BannerGoods">select * from banner_goods where id=#{id};</select>
 </mapper>
