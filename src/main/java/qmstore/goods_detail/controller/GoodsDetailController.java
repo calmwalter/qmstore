@@ -1,62 +1,65 @@
-package qmstore.activity_category.controller;
+package qmstore.goods_detail.controller;
+
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import qmstore.activity_category.dao.ActivityCategoryMapper;
-import qmstore.activity_category.pojo.ActivityCategory;
+import qmstore.goods_detail.dao.GoodsDetailMapper;
+import qmstore.goods_detail.pojo.GoodsDetail;
+
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-@RestController
-@RequestMapping("/activity_category")
-public class ActivityCategoryController {
+@Controller
+@RequestMapping("/goods_detail")
+public class  GoodsDetailController {
     private String resource = "mybatis-config.xml";
 
     @GetMapping("/all")
-    public ArrayList<ActivityCategory> findAll() throws IOException {
+    public ArrayList<GoodsDetail> findAll() throws IOException {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
-        ArrayList<ActivityCategory> activityCategories = activityCategoryMapper.findAll();
+        GoodsDetailMapper activityCategoryMapper = sqlSession.getMapper(GoodsDetailMapper.class);
+        ArrayList<GoodsDetail> goodsDetails = activityCategoryMapper.findAll();
         sqlSession.close();
         inputStream.close();
-        return activityCategories;
+        return goodsDetails;
     }
 
     @PostMapping("/add")
-    public ActivityCategory add(@RequestBody ActivityCategory activityCategory) throws IOException {
+    public GoodsDetail add(@RequestBody GoodsDetail goodsDetail) throws IOException {
         //TODO 管理员身份验证
         //TODO 时间戳活动id创建
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
+        GoodsDetailMapper goodsDetailMapper = sqlSession.getMapper(GoodsDetailMapper.class);
 
-        activityCategoryMapper.add(activityCategory);
+        goodsDetailMapper.add(goodsDetail);
         sqlSession.commit();
         sqlSession.close();
         inputStream.close();
-        System.out.println(activityCategory.getId());
+        System.out.println(goodsDetail.getId());
 
-        return activityCategory;
+        return goodsDetail;
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody ActivityCategory activityCategory) throws IOException {
+    public void update(@RequestBody GoodsDetail goodsDetail) throws IOException {
         //TODO 管理员身份验证
         //TODO 活动种类存在校验
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
+        GoodsDetailMapper goodsDetailMapper = sqlSession.getMapper(GoodsDetailMapper.class);
 
-        int res = activityCategoryMapper.update(activityCategory);
+        int res = goodsDetailMapper.update(goodsDetail);
         sqlSession.commit();
         sqlSession.close();
         inputStream.close();
@@ -67,22 +70,22 @@ public class ActivityCategoryController {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
+        GoodsDetailMapper goodsDetailMapper = sqlSession.getMapper(GoodsDetailMapper.class);
 
-        int res = activityCategoryMapper.delete(id);
+        int res = goodsDetailMapper.delete(id);
         sqlSession.commit();
         sqlSession.close();
         inputStream.close();
     }
 
     @GetMapping("/find")
-    public ActivityCategory find(@RequestParam("id") int id) throws IOException {
+    public GoodsDetail find(@RequestParam("id") int id) throws IOException {
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         SqlSession sqlSession = sqlSessionFactory.openSession();
-        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
+        GoodsDetailMapper goodsDetailMapper = sqlSession.getMapper(GoodsDetailMapper.class);
 
-        ActivityCategory res = activityCategoryMapper.find(id);
+        GoodsDetail res = goodsDetailMapper.find(id);
         sqlSession.commit();
         sqlSession.close();
         inputStream.close();
@@ -90,4 +93,5 @@ public class ActivityCategoryController {
         return res;
 
     }
+
 }
