@@ -11,6 +11,7 @@ import java.util.Date;
 public class User {
     private String userId;
     private String userGroup;
+    private String userName;
     private String password;
     private String phone;
     private String email;

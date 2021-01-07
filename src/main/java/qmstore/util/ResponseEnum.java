@@ -6,7 +6,8 @@ public enum ResponseEnum {
     SUCCESS(200, "成功"),
     NOT_LOGIN_IN(300, "未登录"),
     SYSTEM_BUSY(400, "系统繁忙"),
-    SYSTEM_ERROR(500, "系统出错")
+    SYSTEM_ERROR(500, "系统出错"),
+    SYSTEM_FAIL(600, "访问出错")
 
     ;
     private final int code;

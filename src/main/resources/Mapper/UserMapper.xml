@@ -13,4 +13,37 @@
         WHERE user_id = #{userId}
     </select>
 
+    <insert id="addUser" parameterType="qmstore.user.pojo.User">
+        INSERT INTO user
+        (
+         user_id, user_group, user_name, password, phone, create_time, update_time, email
+        )
+        VALUES
+        (
+         #{userId}, #{userGroup}, #{userName}, #{password}, #{phone}, #{createTime}, #{updateTime}, #{email}
+        )
+    </insert>
+
+    <select id="getUserId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT user_id
+        FROM user
+        WHERE
+        user_id = #{userId}
+    </select>
+
+    <update id="updateUser" parameterType="qmstore.user.pojo.User">
+        UPDATE user
+        SET
+            user_name = #{userName},
+            password = #{password},
+            phone = #{phone},
+            update_time = #{updateTime},
+            email = #{email}
+        WHERE
+            user_id = #{userId};
+
+    </update>
+
+
+
 </mapper>
