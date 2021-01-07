@@ -1,6 +1,5 @@
 package qmstore.user.manager;
 
-import jdk.vm.ci.code.Register;
 import qmstore.user.condition.RegisterCondition;
 import qmstore.user.pojo.User;
 import qmstore.util.Response;

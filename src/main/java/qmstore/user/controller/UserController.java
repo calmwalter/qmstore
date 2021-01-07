@@ -1,4 +1,4 @@
-package qmstore.user.Controller;
+package qmstore.user.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import qmstore.user.condition.LoginCondition;
 import qmstore.user.condition.RegisterCondition;
 import qmstore.user.manager.impl.UserManagerImpl;
-import qmstore.user.pojo.User;
 import qmstore.util.Response;
 
 import javax.annotation.Resource;
