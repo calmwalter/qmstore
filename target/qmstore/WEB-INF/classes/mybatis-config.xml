@@ -3,18 +3,27 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 设置日志打印 -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
     <environments default="mysql">
         <environment id="mysql">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/qmstore?characterEncoding=utf-8&amp;serverTimezone=UTC"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="url" value="jdbc:mysql://sh-cynosdbmysql-grp-hfp8erbs.sql.tencentcdb.com:28781/qmstore?characterEncoding=utf-8&amp;serverTimezone=UTC"/>
+                <property name="username" value="master"/>
+                <property name="password" value="Wozuishuai.1"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
         <mapper resource="CommodityMapper.xml"/>
+
+        <mapper resource="ImgapiMapper.xml"/>
     </mappers>
+
+
 </configuration>

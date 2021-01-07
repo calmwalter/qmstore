@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-Built-By: calmwalter
-Build-Jdk: 15
+Built-By: ikaro
+Build-Jdk: 10.0.2
 

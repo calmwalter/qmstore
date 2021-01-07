@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 设置日志打印 -->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
     <environments default="mysql">
         <environment id="mysql">
             <transactionManager type="JDBC"/>
@@ -16,6 +21,9 @@
     </environments>
     <mappers>
         <mapper resource="CommodityMapper.xml"/>
-        <mapper resource="UserMapper.xml"/>
+
+        <mapper resource="ImgapiMapper.xml"/>
     </mappers>
+
+
 </configuration>
