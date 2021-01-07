@@ -9,5 +9,5 @@ public interface ActivityCategoryMapper {
     void add(ActivityCategory activityCategory);
     int update(ActivityCategory activityCategory);
     int delete(int id);
-    int find(int id);
+    ActivityCategory find(int id);
 }
