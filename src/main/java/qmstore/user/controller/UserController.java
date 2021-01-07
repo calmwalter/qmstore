@@ -12,13 +12,14 @@ import qmstore.util.Response;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("user/")
+@RequestMapping("/user")
 public class UserController {
     @Resource
     UserManagerImpl userManager;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public Response userLogin(@RequestBody LoginCondition loginCondition){
+        System.out.println("123123");
         try {
             return userManager.UserLogin(loginCondition.getUserId(), loginCondition.getPassword());
         }catch (Exception e){

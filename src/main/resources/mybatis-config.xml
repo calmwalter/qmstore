@@ -14,12 +14,26 @@
             </dataSource>
         </environment>
     </environments>
-    <mappers>
-        <mapper resource="Mapper/CommodityMapper.xml"/>
-        <mapper resource="Mapper/ActivityCategoryMapper.xml"/>
-        <mapper resource="Mapper/BannerGoodsMapper.xml"/>
-        <mapper resource="Mapper/GoodsActivityMapper.xml"/>
-        <mapper resource="Mapper/GoodsDetailMapper.xml"/>
-        <mapper resource="Mapper/UserMapper.xml"/>
-    </mappers>
+<!--    <mappers>-->
+<!--        <mapper resource="Mapper/CommodityMapper.xml"/>-->
+<!--        <mapper resource="Mapper/ActivityCategoryMapper.xml"/>-->
+<!--        <mapper resource="Mapper/BannerGoodsMapper.xml"/>-->
+<!--        <mapper resource="Mapper/GoodsActivityMapper.xml"/>-->
+<!--        <mapper resource="Mapper/GoodsDetailMapper.xml"/>-->
+<!--        <mapper resource="Mapper/UserMapper.xml"/>-->
+<!--    </mappers>-->
+
+<!--    <properties>-->
+<!--        <property name="dialect" value="MYSQL"/>-->
+<!--    </properties>-->
+<!--    <settings>-->
+<!--        <setting name="cacheEnabled" value="true" />-->
+<!--        <setting name="lazyLoadingEnabled" value="true" />-->
+<!--        <setting name="multipleResultSetsEnabled" value="true" />-->
+<!--        <setting name="useColumnLabel" value="true" />-->
+<!--        <setting name="defaultExecutorType" value="REUSE" />-->
+<!--        &lt;!&ndash; 默认全局超时都设置成30秒 &ndash;&gt;-->
+<!--        <setting name="defaultStatementTimeout" value="30"/>-->
+<!--    </settings>-->
+
 </configuration>

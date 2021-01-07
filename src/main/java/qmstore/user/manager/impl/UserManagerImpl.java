@@ -1,5 +1,6 @@
 package qmstore.user.manager.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import qmstore.user.condition.RegisterCondition;
@@ -35,15 +36,23 @@ public class UserManagerImpl implements UserManager {
 
     @Override
     public Response UserLogin(String userId, String password) {
-        if (checkPassword(userId, password)) {
-            User user = this.getUser(userId);
-            if(user.getUserGroup().equals("CUSTOMER")){
-                user.setUserType(DataType.CUSTOMER);
+        try {
+
+            if (checkPassword(userId, password)) {
+                System.out.println("userId = " + userId);
+                User user = this.getUser(userId);
+                System.out.println("user = " + user);
+                if (user.getUserGroup().equals("CUSTOMER")) {
+                    user.setUserType(DataType.CUSTOMER);
+                }
+                UserUtil.set(user);
+                return Response.SUCCESS();
             }
-            UserUtil.set(user);
-            return Response.SUCCESS();
+            return Response.ERROR("账号或密码错误");
+        }catch (Exception e){
+            System.out.println("e.getMessage() = " + e.getMessage());
+            return Response.ERROR(e.getMessage());
         }
-        return Response.ERROR("账号或密码错误");
     }
 
 
