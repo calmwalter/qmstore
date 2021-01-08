@@ -6,7 +6,7 @@
 <mapper namespace="qmstore.banner_goods.dao.BannerGoodsMapper">
     <select id="findAll" resultType="qmstore.banner_goods.pojo.BannerGoods">select  *from banner_goods;</select>
 
-    <insert id="add" parameterType="qmstore.banner_goods.pojo.BannerGoods" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into banner_goods(goods_id, pic_url,create_time,update_time)values(#{goodsId},#{picUrl}, #{category}, #{createTime},#{updateTime});</insert>
+    <insert id="add" parameterType="qmstore.banner_goods.pojo.BannerGoods" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into banner_goods(goods_id, pic_url,create_time,update_time)values(#{goodsId},#{picUrl}, #{createTime},#{updateTime});</insert>
     <update id="update" parameterType="qmstore.banner_goods.pojo.BannerGoods">update banner_goods set pic_url = #{picUrl},update_time=#{updateTime}, goods_id = #{goodsId} where id = #{id};
     </update>
     <delete id="delete">delete from banner_goods where id=#{id};</delete>
