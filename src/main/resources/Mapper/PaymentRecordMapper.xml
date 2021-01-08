@@ -37,4 +37,9 @@
             payment_state_desc = #{paymentStateDesc,jdbcType=VARCHAR}
         where order_id = #{orderId,jdbcType=VARCHAR}
     </update>
+
+    <select id="getAllPaymentRecord" resultType="qmstore.payment_record.pojo.PaymentRecord">
+        SELECT *
+        FROM payment_record
+    </select>
 </mapper>

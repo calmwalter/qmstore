@@ -23,6 +23,9 @@ public class UserUtil {
     public static User get() {
         System.out.println( "当前线程 get：" + Thread.currentThread().getName() );
         System.out.println(getSession().getAttribute(SESSION_USER));
+        if(getSession().getAttribute(SESSION_USER) == null){
+            return null;
+        }
         return USER.get();
     }
 
