@@ -6,8 +6,8 @@
 <mapper namespace="qmstore.activity_category.dao.ActivityCategoryMapper">
     <select id="findAll" resultType="qmstore.activity_category.pojo.ActivityCategory">select  *from activity_category;</select>
 
-    <insert id="add" parameterType="qmstore.activity_category.pojo.ActivityCategory" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into activity_category(activity_id, activity_name,category,activity_desc,start_time,end_time,create_time,update_time)values(#{activity_id},#{activity_name}, #{category},#{activity_desc},#{start_time},#{end_time}, #{create_time},#{update_time});</insert>
-    <update id="update" parameterType="qmstore.activity_category.pojo.ActivityCategory">update activity_category set activity_name = #{activity_name},category = #{category},activity_desc = #{activity_desc}, start_time = #{start_time}, end_time=#{end_time},update_time=#{update_time} where id = #{id};
+    <insert id="add" parameterType="qmstore.activity_category.pojo.ActivityCategory" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into activity_category(activity_id, activity_name,category,activity_desc,start_time,end_time,create_time,update_time)values(#{activityId},#{activityName}, #{category},#{activityDesc},#{startTime},#{endTime}, #{createTime},#{updateTime});</insert>
+    <update id="update" parameterType="qmstore.activity_category.pojo.ActivityCategory">update activity_category set activity_name = #{activityName},category = #{category},activity_desc = #{activityDesc}, start_time = #{startTime}, end_time=#{endTime},update_time=#{updateTime} where id = #{id};
     </update>
     <delete id="delete">delete from activity_category where activity_id=#{activity_id};</delete>
     <select id="find" resultType="qmstore.activity_category.pojo.ActivityCategory">select * from activity_category where activity_id=#{activity_id};</select>

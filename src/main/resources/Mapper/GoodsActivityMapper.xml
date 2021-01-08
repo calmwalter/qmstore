@@ -6,8 +6,8 @@
 <mapper namespace="qmstore.goods_activity.dao.GoodsActivityMapper">
     <select id="findAll" resultType="qmstore.goods_activity.pojo.GoodsActivity">select  * from goods_activity;</select>
 
-    <insert id="add" parameterType="qmstore.goods_activity.pojo.GoodsActivity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into goods_activity(goods_id, activity_id,create_time,update_time)values(#{goods_id},#{activity_id}, #{create_time},#{update_time});</insert>
-    <update id="update" parameterType="qmstore.goods_activity.pojo.GoodsActivity">update goods_activity set goods_id = #{goods_id},activity_id = #{activity_id}, update_time=#{update_time} where id = #{id};
+    <insert id="add" parameterType="qmstore.goods_activity.pojo.GoodsActivity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into goods_activity(goods_id, activity_id,create_time,update_time)values(#{goodsId},#{activityId}, #{createTime},#{updateTime});</insert>
+    <update id="update" parameterType="qmstore.goods_activity.pojo.GoodsActivity">update goods_activity set goods_id = #{goodsId},activity_id = #{activityId}, update_time=#{updateTime} where id = #{id};
     </update>
     <delete id="delete">delete from goods_activity where id=#{id};</delete>
     <select id="find" resultType="qmstore.goods_activity.pojo.GoodsActivity">select * from goods_activity where id=#{id};</select>
