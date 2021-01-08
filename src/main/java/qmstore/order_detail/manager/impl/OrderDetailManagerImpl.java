@@ -1,5 +1,6 @@
 package qmstore.order_detail.manager.impl;
 
+import org.springframework.stereotype.Component;
 import qmstore.order_detail.constant.OrderStateEnum;
 import qmstore.order_detail.dao.OrderDetailDao;
 import qmstore.order_detail.manager.OrderDetailManager;
@@ -8,6 +9,7 @@ import qmstore.util.Response;
 
 import javax.annotation.Resource;
 
+@Component
 public class OrderDetailManagerImpl implements OrderDetailManager {
     @Resource
     OrderDetailDao orderDetailDao;
