@@ -1,5 +1,6 @@
 package qmstore.user_address.manager.impl;
 
+import org.springframework.stereotype.Component;
 import qmstore.user_address.dao.UserAddressDao;
 import qmstore.user_address.manager.UserAddressManager;
 import qmstore.user_address.pojo.UserAddress;
@@ -7,6 +8,7 @@ import qmstore.util.Response;
 
 import javax.annotation.Resource;
 
+@Component
 public class UserAddressManagerImpl implements UserAddressManager {
     @Resource
     UserAddressDao userAddressDao;
