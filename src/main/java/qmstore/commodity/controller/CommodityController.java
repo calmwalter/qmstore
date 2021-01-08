@@ -11,6 +11,7 @@ import qmstore.commodity.pojo.Commodity;
 import qmstore.user.annotation.DataAuth;
 import qmstore.user.pojo.User;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -18,18 +19,19 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/commodity")
 public class CommodityController {
-    private String resource = "mybatis-config.xml";
-
+//    private String resource = "mybatis-config.xml";
+    @Resource
+    CommodityMapper commodityMapper;
 
     @GetMapping("/all")
     public ArrayList<Commodity> findAll() throws IOException {
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        CommodityMapper commodityMapper = sqlSession.getMapper(CommodityMapper.class);
+//        InputStream inputStream = Resources.getResourceAsStream(resource);
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        CommodityMapper commodityMapper = sqlSession.getMapper(CommodityMapper.class);
         ArrayList<Commodity> commodities = commodityMapper.findAll();
-        sqlSession.close();
-        inputStream.close();
+//        sqlSession.close();
+//        inputStream.close();
         return commodities;
     }
 
@@ -37,16 +39,16 @@ public class CommodityController {
     public Commodity add(@RequestBody Commodity commodity, @DataAuth User user) throws IOException {
         if(user != null){
         }
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        CommodityMapper commodityMapper = sqlSession.getMapper(CommodityMapper.class);
+//        InputStream inputStream = Resources.getResourceAsStream(resource);
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        CommodityMapper commodityMapper = sqlSession.getMapper(CommodityMapper.class);
         System.out.println(commodity);
 
         commodityMapper.add(commodity);
-        sqlSession.commit();
-        sqlSession.close();
-        inputStream.close();
+//        sqlSession.commit();
+//        sqlSession.close();
+//        inputStream.close();
         System.out.println(commodity.getId());
 
         return commodity;
@@ -54,28 +56,28 @@ public class CommodityController {
 
     @PostMapping("/update")
     public void update(@RequestBody Commodity commodity) throws IOException {
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        CommodityMapper commodityMapper = sqlSession.getMapper(CommodityMapper.class);
+//        InputStream inputStream = Resources.getResourceAsStream(resource);
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        CommodityMapper commodityMapper = sqlSession.getMapper(CommodityMapper.class);
 
         int res = commodityMapper.update(commodity);
-        sqlSession.commit();
-        sqlSession.close();
-        inputStream.close();
+//        sqlSession.commit();
+//        sqlSession.close();
+//        inputStream.close();
     }
 
     @GetMapping("/delete")
     public void delete(@RequestParam("id") int id) throws IOException {
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-        CommodityMapper commodityMapper = sqlSession.getMapper(CommodityMapper.class);
+//        InputStream inputStream = Resources.getResourceAsStream(resource);
+//        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+//        SqlSession sqlSession = sqlSessionFactory.openSession();
+//        CommodityMapper commodityMapper = sqlSession.getMapper(CommodityMapper.class);
 
         int res = commodityMapper.delete(id);
-        sqlSession.commit();
-        sqlSession.close();
-        inputStream.close();
+//        sqlSession.commit();
+//        sqlSession.close();
+//        inputStream.close();
     }
 
 }
