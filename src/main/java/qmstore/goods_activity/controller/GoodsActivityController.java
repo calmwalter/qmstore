@@ -52,8 +52,8 @@ public class GoodsActivityController {
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        GoodsActivityMapper goodsActivityMapper = sqlSession.getMapper(GoodsActivityMapper.class);
-        goodsActivity.setCreate_time(new Timestamp(System.currentTimeMillis()));
-        goodsActivity.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+        goodsActivity.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        goodsActivity.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
 
         goodsActivityMapper.add(goodsActivity);
@@ -79,7 +79,7 @@ public class GoodsActivityController {
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        GoodsActivityMapper goodsActivityMapper = sqlSession.getMapper(GoodsActivityMapper.class);
-        goodsActivity.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+        goodsActivity.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
         int res = goodsActivityMapper.update(goodsActivity);
 //        sqlSession.commit();

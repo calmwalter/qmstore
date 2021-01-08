@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qmstore.payment_record.dao.PaymentRecordDao">
+    <select id="selectByOrderId" parameterType="java.lang.String" resultType="qmstore.payment_record.pojo.PaymentRecord">
+        SELECT
+        *
+        FROM payment_record
+        WHERE order_id = #{orderId}
+    </select>
+
+    <delete id="deleteByOrderId" parameterType="java.lang.String">
+        DELECT FROM payment_record
+        WHERE order_id = #{orderId,jdbcType=VARCHAR}
+    </delete>
+
+    <insert id="insertPaymentRecord" parameterType="qmstore.payment_record.pojo.PaymentRecord">
+        insert into payment_record (order_id, payment_amount, payment_state,
+                                    payment_way, payment_id, create_time,
+                                    update_time, payment_state_code, payment_state_desc
+        )
+        values (#{orderId}, #{paymentAmount,jdbcType=DOUBLE}, #{paymentState,jdbcType=VARCHAR},
+                #{paymentWay,jdbcType=VARCHAR}, #{paymentId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP}, #{paymentStateCode,jdbcType=VARCHAR}, #{paymentStateDesc,jdbcType=VARCHAR}
+               )
+    </insert>
+    
+    <update id="updatePaymentRecord" parameterType="qmstore.payment_record.pojo.PaymentRecord">
+        update payment_record
+        set order_id = #{orderId},
+            payment_amount = #{paymentAmount,jdbcType=DOUBLE},
+            payment_state = #{paymentState,jdbcType=VARCHAR},
+            payment_way = #{paymentWay,jdbcType=VARCHAR},
+            payment_id = #{paymentId,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            payment_state_code = #{paymentStateCode,jdbcType=VARCHAR},
+            payment_state_desc = #{paymentStateDesc,jdbcType=VARCHAR}
+        where order_id = #{orderId,jdbcType=VARCHAR}
+    </update>
+</mapper>

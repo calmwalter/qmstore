@@ -56,9 +56,9 @@ public class ActivityCategoryController {
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
-        activityCategory.setActivity_id("0001"+System.currentTimeMillis());
-        activityCategory.setCreate_time(new Timestamp(System.currentTimeMillis()));
-        activityCategory.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+        activityCategory.setActivityId("0001"+System.currentTimeMillis());
+        activityCategory.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        activityCategory.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
         activityCategoryMapper.add(activityCategory);
 //        sqlSession.commit();
@@ -83,7 +83,7 @@ public class ActivityCategoryController {
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
-        activityCategory.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+        activityCategory.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         int res = activityCategoryMapper.update(activityCategory);
 //        sqlSession.commit();
 //        sqlSession.close();
@@ -107,7 +107,7 @@ public class ActivityCategoryController {
         //删除关联
         ArrayList<GoodsActivity> goodsActivities = goodsActivityMapper.findAll();
         for(GoodsActivity goodsActivity :goodsActivities){
-            if(goodsActivity.getActivity_id()==id){
+            if(goodsActivity.getActivityId()==id){
                 goodsActivityMapper.delete(goodsActivity.getId());
             }
         }

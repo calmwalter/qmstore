@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import qmstore.user.annotation.DataAuth;
 import qmstore.user.condition.LoginCondition;
 import qmstore.user.condition.RegisterCondition;
+import qmstore.user.constant.DataType;
 import qmstore.user.manager.impl.UserManagerImpl;
 import qmstore.user.pojo.User;
 import qmstore.util.Response;
@@ -47,6 +48,19 @@ public class UserController {
         }catch (Exception e){
             return Response.ERROR(e.getMessage());
         }
+    }
+
+    @GetMapping("getAllUer")
+    public Response getAllUser(@DataAuth User user){
+        if(user != null && user.getUserType().equals(DataType.ADMIN)){
+            return userManager.getAllUser();
+        }
+        return Response.FAIL("无权限");
+    }
+
+    @GetMapping("logout")
+    public Response userLogout(){
+        return userManager.UserLogOut();
     }
 
 

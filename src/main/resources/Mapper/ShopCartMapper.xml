@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qmstore.shop_cart.dao.ShopCartDao">
+    <select id="getShopCartByUser" parameterType="java.lang.String" resultType="qmstore.shop_cart.pojo.ShopCart">
+        SELECT *
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="getShopCartByGoods" parameterType="java.lang.String" resultType="qmstore.shop_cart.pojo.ShopCart">
+        SELECT *
+        FROM user
+        WHERE goods_id = #{goodsId}
+    </select>
+
+    <insert id="addShopCart" parameterType="qmstore.shop_cart.pojo.ShopCart">
+        INSERT INTO user
+        (user_id, goods_id, goods_num, create_time, update_time)
+        VALUES
+        (#{userId}, #{goodsId}, #{goodsNum}, #{createTime}, #{updateTime})
+    </insert>
+
+    <delete id="deleteShopCartByUserAndGoodsId" parameterType="java.lang.String">
+        DELETE
+        FROM user
+        WHERE user_id = #{userId} AND goods_id = #{GoodsId}
+    </delete>
+
+    <update id="updateShopCart" parameterType="qmstore.shop_cart.pojo.ShopCart">
+        UPDATE user
+        SET
+        goods_num = #{goodsNum},
+        update_time = #{updateTIme}
+        WHERE
+        goods_id = #{goodsId} AND user_id = #{userId}
+    </update>
+
+</mapper>

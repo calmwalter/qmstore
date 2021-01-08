@@ -46,6 +46,8 @@ public class UserManagerImpl implements UserManager {
                 if (user.getUserGroup().equals("CUSTOMER") || user.getUserGroup().equals("normal")) {
                     System.out.println("user is customer");
                     user.setUserType(DataType.CUSTOMER);
+                }else if(user.getUserGroup().equals("admin")){
+                    user.setUserType(DataType.ADMIN);
                 }
 //                user.setCreateDate(DateUtil.date(user.getCreateTime()));
 //                user.setUpdateDate(DateUtil.date(user.getUpdateDate()));
@@ -136,6 +138,21 @@ public class UserManagerImpl implements UserManager {
             newUser.setUpdateTime(new Timestamp(System.currentTimeMillis()));
             userDao.updateUser(newUser);
 
+            return Response.SUCCESS();
+        }catch (Exception e){
+            return Response.ERROR(e.getMessage());
+        }
+    }
+
+    @Override
+    public Response getAllUser() {
+        return Response.SUCCESS(userDao.getAllUser());
+    }
+
+    @Override
+    public Response UserLogOut(){
+        try {
+            UserUtil.remove();
             return Response.SUCCESS();
         }catch (Exception e){
             return Response.ERROR(e.getMessage());

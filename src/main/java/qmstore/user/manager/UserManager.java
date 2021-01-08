@@ -19,4 +19,10 @@ public interface UserManager {
 
     //修改用户信息
     public Response changeUser(RegisterCondition condition);
+
+    //获取所有用户
+    public Response getAllUser();
+
+    //退出
+    public Response UserLogOut();
 }

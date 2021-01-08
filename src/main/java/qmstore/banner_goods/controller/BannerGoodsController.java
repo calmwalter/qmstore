@@ -52,8 +52,8 @@ public class BannerGoodsController {
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        BannerGoodsMapper bannerGoodsMapper = sqlSession.getMapper(BannerGoodsMapper.class);
 
-        bannerGoods.setCreate_time(new Timestamp(System.currentTimeMillis()));
-        bannerGoods.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+        bannerGoods.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        bannerGoods.setUpdateTime(new Timestamp(System.currentTimeMillis()));
 
         bannerGoodsMapper.add(bannerGoods);
 //        sqlSession.commit();
@@ -78,7 +78,7 @@ public class BannerGoodsController {
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        BannerGoodsMapper bannerGoodsMapper = sqlSession.getMapper(BannerGoodsMapper.class);
-        bannerGoods.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+        bannerGoods.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         int res = bannerGoodsMapper.update(bannerGoods);
 //        sqlSession.commit();
 //        sqlSession.close();
