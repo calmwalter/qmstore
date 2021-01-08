@@ -16,12 +16,12 @@
         insert into order_detail ( user_id, goods_id,
                                   logistics_id, goods_num, goods_price,
                                   goods_amount, order_desc, order_state_code,
-                                  order_state_desc, create_time, update_time
+                                  order_state_desc, create_time, update_time, address
         )
         values ( #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR},
                 #{logisticsId,jdbcType=VARCHAR}, #{goodsNum,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE},
                 #{goodsAmount,jdbcType=DOUBLE}, #{orderDesc,jdbcType=VARCHAR}, #{orderStateCode,jdbcType=VARCHAR},
-                #{orderStateDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+                #{orderStateDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{address}
                )
     </insert>
 
@@ -60,6 +60,9 @@
             </if>
             <if test="updateTime != null">
                 update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="address != null">
+                address = #{address},
             </if>
         </set>
         where order_id = #{orderId,jdbcType=VARCHAR}

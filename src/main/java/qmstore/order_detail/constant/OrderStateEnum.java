@@ -14,6 +14,13 @@ public enum OrderStateEnum {
         this.orderStateCode = orderStateCode;
         this.orderStateDesc = orderStateDesc;
     }
+    public String getOrderStateCode(){
+        return orderStateCode;
+    }
+
+    public String getOrderStateDesc(){
+        return orderStateDesc;
+    }
 
 
 }

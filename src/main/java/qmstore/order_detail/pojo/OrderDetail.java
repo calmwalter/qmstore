@@ -46,5 +46,7 @@ public class OrderDetail implements Serializable {
 
     private Date updateTime;
 
+    private String address;
+
 
 }
