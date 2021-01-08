@@ -40,9 +40,9 @@ public class UserManagerImpl implements UserManager {
         try {
 
             if (checkPassword(userId, password)) {
-                System.out.println("userId = " + userId);
+                System.out.println("public Response UserLogin userId = " + userId);
                 User user = this.getUser(userId);
-                System.out.println("user = " + user);
+                System.out.println("public Response UserLogin user = " + user);
                 if (user.getUserGroup().equals("CUSTOMER") || user.getUserGroup().equals("normal")) {
                     System.out.println("user is customer");
                     user.setUserType(DataType.CUSTOMER);
@@ -56,7 +56,7 @@ public class UserManagerImpl implements UserManager {
             }
             return Response.ERROR("账号或密码错误");
         }catch (Exception e){
-            System.out.println("e.getMessage() = " + e.getMessage());
+            System.out.println("public Response UserLogin e.getMessage() = " + e.getMessage());
             return Response.ERROR(e.getMessage());
         }
     }
@@ -168,7 +168,7 @@ public class UserManagerImpl implements UserManager {
     private boolean isPhone(String phone){
         String returnStr = "";
         if (StringUtils.isEmpty(phone))
-            return false;
+            return true;
 
         if (!StringUtils.isEmpty(returnStr)) {
             // 校验手机
@@ -191,8 +191,8 @@ public class UserManagerImpl implements UserManager {
     }
 
     public boolean isEmail(String email) {
-        if (email == null)
-            return false;
+        if (StringUtils.isEmpty(email))
+            return true;
         String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
         Pattern p;
         Matcher m;

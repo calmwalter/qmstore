@@ -16,12 +16,12 @@ public class UserFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        System.out.println("拦截请求");
+        System.out.println("public void doFilter(ServletRequest 拦截请求");
         User user = UserUtil.get();
-        System.out.println("user = " + user);
+        System.out.println("public void doFilter(ServletRequest user = " + user);
         if(user == null){
             user = (User) UserUtil.getSession().getAttribute(UserUtil.SESSION_USER);
-            System.out.println("new user = " + user);
+            System.out.println("public void doFilter(ServletRequest new user = " + user);
         }
         UserUtil.set(user);
         filterChain.doFilter(servletRequest, servletResponse);
