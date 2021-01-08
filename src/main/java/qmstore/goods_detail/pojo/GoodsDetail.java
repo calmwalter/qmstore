@@ -15,6 +15,7 @@ public class GoodsDetail {
     String pic_url;
     Timestamp create_time;
     Timestamp update_time;
+    int sale_status;
 
     public String getGoods_id() {
         return goods_id;
@@ -24,6 +25,13 @@ public class GoodsDetail {
         this.goods_id = goods_id;
     }
 
+    public int getSale_status() {
+        return sale_status;
+    }
+
+    public void setSale_status(int sale_status) {
+        this.sale_status = sale_status;
+    }
 
     @Override
     public String toString() {
@@ -40,6 +48,7 @@ public class GoodsDetail {
                 ", pic_url='" + pic_url + '\'' +
                 ", create_time=" + create_time +
                 ", update_time=" + update_time +
+                ", sale_status=" + sale_status +
                 '}';
     }
 

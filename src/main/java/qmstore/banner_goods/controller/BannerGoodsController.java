@@ -15,6 +15,7 @@ import qmstore.user.pojo.User;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @RestController
@@ -51,6 +52,9 @@ public class BannerGoodsController {
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        BannerGoodsMapper bannerGoodsMapper = sqlSession.getMapper(BannerGoodsMapper.class);
 
+        bannerGoods.setCreate_time(new Timestamp(System.currentTimeMillis()));
+        bannerGoods.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+
         bannerGoodsMapper.add(bannerGoods);
 //        sqlSession.commit();
 //        sqlSession.close();
@@ -74,7 +78,7 @@ public class BannerGoodsController {
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        BannerGoodsMapper bannerGoodsMapper = sqlSession.getMapper(BannerGoodsMapper.class);
-
+        bannerGoods.setUpdate_time(new Timestamp(System.currentTimeMillis()));
         int res = bannerGoodsMapper.update(bannerGoods);
 //        sqlSession.commit();
 //        sqlSession.close();

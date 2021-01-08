@@ -13,6 +13,7 @@ import qmstore.goods_detail.pojo.GoodsDetail;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @RestController
@@ -44,6 +45,9 @@ public class  GoodsDetailController {
 //        GoodsDetailMapper goodsDetailMapper = sqlSession.getMapper(GoodsDetailMapper.class);
         goodsDetail.setGoods_id("0002"+System.currentTimeMillis());
 
+        goodsDetail.setCreate_time(new Timestamp(System.currentTimeMillis()));
+        goodsDetail.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+
         goodsDetailMapper.add(goodsDetail);
 //        sqlSession.commit();
 //        sqlSession.close();
@@ -61,6 +65,7 @@ public class  GoodsDetailController {
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        GoodsDetailMapper goodsDetailMapper = sqlSession.getMapper(GoodsDetailMapper.class);
+        goodsDetail.setUpdate_time(new Timestamp(System.currentTimeMillis()));
 
         int res = goodsDetailMapper.update(goodsDetail);
 //        sqlSession.commit();

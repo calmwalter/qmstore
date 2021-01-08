@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.web.bind.annotation.*;
 import qmstore.activity_category.dao.ActivityCategoryMapper;
 import qmstore.activity_category.pojo.ActivityCategory;
+import qmstore.goods_activity.dao.GoodsActivityMapper;
+import qmstore.goods_activity.pojo.GoodsActivity;
 import qmstore.user.annotation.DataAuth;
 import qmstore.user.constant.DataType;
 import qmstore.user.pojo.User;
@@ -14,6 +16,7 @@ import qmstore.user.pojo.User;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 @RestController
@@ -23,6 +26,9 @@ public class ActivityCategoryController {
 
     @Resource
     ActivityCategoryMapper activityCategoryMapper;
+
+    @Resource
+    GoodsActivityMapper goodsActivityMapper;
 
     @GetMapping("/all")
     public ArrayList<ActivityCategory> findAll() throws IOException {
@@ -51,6 +57,9 @@ public class ActivityCategoryController {
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
         activityCategory.setActivity_id("0001"+System.currentTimeMillis());
+        activityCategory.setCreate_time(new Timestamp(System.currentTimeMillis()));
+        activityCategory.setUpdate_time(new Timestamp(System.currentTimeMillis()));
+
         activityCategoryMapper.add(activityCategory);
 //        sqlSession.commit();
 //        sqlSession.close();
@@ -74,7 +83,7 @@ public class ActivityCategoryController {
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
-
+        activityCategory.setUpdate_time(new Timestamp(System.currentTimeMillis()));
         int res = activityCategoryMapper.update(activityCategory);
 //        sqlSession.commit();
 //        sqlSession.close();
@@ -95,7 +104,15 @@ public class ActivityCategoryController {
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
 
+        //删除关联
+        ArrayList<GoodsActivity> goodsActivities = goodsActivityMapper.findAll();
+        for(GoodsActivity goodsActivity :goodsActivities){
+            if(goodsActivity.getActivity_id()==id){
+                goodsActivityMapper.delete(goodsActivity.getId());
+            }
+        }
         int res = activityCategoryMapper.delete(id);
+
 //        sqlSession.commit();
 //        sqlSession.close();
 //        inputStream.close();
