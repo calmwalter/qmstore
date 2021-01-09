@@ -108,7 +108,7 @@ public class ActivityCategoryController {
         ArrayList<GoodsActivity> goodsActivities = goodsActivityMapper.findAll();
         for(GoodsActivity goodsActivity :goodsActivities){
             if(goodsActivity.getActivityId()==id){
-                goodsActivityMapper.delete(goodsActivity.getId());
+                goodsActivityMapper.delete(goodsActivity.getActivityId());
             }
         }
         int res = activityCategoryMapper.delete(id);
