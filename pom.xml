@@ -20,6 +20,17 @@
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>com.tencent.cloud</groupId>
+      <artifactId>cos-sts-java</artifactId>
+      <version>3.0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>com.qcloud</groupId>
+      <artifactId>cos_api</artifactId>
+      <version>5.6.24</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

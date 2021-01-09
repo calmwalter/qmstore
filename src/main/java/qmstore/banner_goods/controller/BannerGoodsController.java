@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-
+@CrossOrigin(origins = "http://localhost:9528",allowCredentials = "true")
 @RestController
 @RequestMapping("/banner_goods")
 public class BannerGoodsController {

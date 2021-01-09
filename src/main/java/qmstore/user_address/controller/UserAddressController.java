@@ -9,7 +9,7 @@ import qmstore.user_address.pojo.UserAddress;
 import qmstore.util.Response;
 
 import javax.annotation.Resource;
-
+@CrossOrigin(origins = "http://localhost:9528",allowCredentials = "true")
 @RestController
 @RequestMapping("user_address")
 public class UserAddressController {

@@ -10,7 +10,7 @@ import qmstore.user.pojo.User;
 import qmstore.util.Response;
 
 import javax.annotation.Resource;
-
+@CrossOrigin(origins = "http://localhost:9528",allowCredentials = "true")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -50,7 +50,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("getAllUer")
+    @GetMapping("getAllUser")
     public Response getAllUser(@DataAuth User user){
         if(user != null && user.getUserType().equals(DataType.ADMIN)){
             return userManager.getAllUser();

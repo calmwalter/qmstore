@@ -9,7 +9,7 @@ import qmstore.user.pojo.User;
 import qmstore.util.Response;
 
 import javax.annotation.Resource;
-
+@CrossOrigin(origins = "http://localhost:9528",allowCredentials = "true")
 @RestController
 @RequestMapping("payment_record")
 public class PaymentRecordController {
