@@ -98,7 +98,11 @@ public class UserManagerImpl implements UserManager {
             newUser.setEmail(user.getEmail());
             newUser.setCreateTime(new Timestamp(System.currentTimeMillis()));
             newUser.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-            newUser.setUserGroup("CUSTOMER");
+            if(user.getUserGroup() == null || !user.getUserGroup().equals("admin")) {
+                newUser.setUserGroup("CUSTOMER");
+            }else {
+                newUser.setUserGroup("admin");
+            }
             userDao.addUser(newUser);
             return Response.SUCCESS();
         }catch (Exception e){
