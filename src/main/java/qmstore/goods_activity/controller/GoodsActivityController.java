@@ -88,7 +88,7 @@ public class GoodsActivityController {
     }
 
     @GetMapping("/delete")
-    public void delete(@RequestParam("id") int id,@DataAuth User user) throws IOException {
+    public void delete(@RequestParam("id") String id,@DataAuth User user) throws IOException {
         //管理员身份验证
         if(user==null){
             return ;
@@ -108,13 +108,13 @@ public class GoodsActivityController {
     }
 
     @GetMapping("/find")
-    public GoodsActivity find(@RequestParam("id") int id) throws IOException {
+    public ArrayList<GoodsActivity> find(@RequestParam("id") String id) throws IOException {
 //        InputStream inputStream = Resources.getResourceAsStream(resource);
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        GoodsActivityMapper goodsActivityMapper = sqlSession.getMapper(GoodsActivityMapper.class);
 
-        GoodsActivity res = goodsActivityMapper.find(id);
+        ArrayList<GoodsActivity> res = goodsActivityMapper.find(id);
 //        sqlSession.commit();
 //        sqlSession.close();
 //        inputStream.close();

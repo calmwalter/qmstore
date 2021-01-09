@@ -9,6 +9,6 @@ public interface GoodsActivityMapper {
     ArrayList<GoodsActivity> findAll();
     void add(GoodsActivity goodsActivity);
     int update(GoodsActivity goodsActivity);
-    int delete(int id);
-    GoodsActivity find(int id);
+    int delete(String id);
+    ArrayList<GoodsActivity> find(String id);
 }
