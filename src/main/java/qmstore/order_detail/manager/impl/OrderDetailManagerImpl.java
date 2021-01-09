@@ -1,5 +1,7 @@
 package qmstore.order_detail.manager.impl;
 
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.RandomUtil;
 import org.springframework.stereotype.Component;
 import qmstore.order_detail.constant.OrderStateEnum;
 import qmstore.order_detail.dao.OrderDetailDao;
@@ -8,6 +10,7 @@ import qmstore.order_detail.pojo.OrderDetail;
 import qmstore.util.Response;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 
 @Component
 public class OrderDetailManagerImpl implements OrderDetailManager {
@@ -33,11 +36,32 @@ public class OrderDetailManagerImpl implements OrderDetailManager {
     @Override
     public Response insertOrderDetail(OrderDetail record) {
         try {
+            //检查价格
+            if(record.getGoodsPrice() == null || record.getGoodsPrice() == 0){
+                if(record.getGoodsAmount() != null && record.getGoodsAmount() != 0 &&
+                record.getGoodsNum() != null && record.getGoodsNum() != 0) {
+                    record.setGoodsPrice(record.getGoodsAmount() * record.getGoodsNum());
+                }else {
+                    return Response.FAIL("商品数量或单价有误");
+                }
+            }else {
+                if(record.getGoodsAmount() != null && record.getGoodsAmount() != 0 &&
+                        record.getGoodsNum() != null && record.getGoodsNum() != 0){
+                    if(record.getGoodsPrice() != record.getGoodsAmount() * record.getGoodsAmount()){
+                        return Response.FAIL("商品总价有误");
+                    }
+                }
+            }
+
             if(record != null && (record.getOrderStateCode() == null || record.getOrderStateCode().equals(""))){
                 record.setOrderStateCode(OrderStateEnum.UNPAID.getOrderStateCode());
                 record.setOrderStateDesc(OrderStateEnum.UNPAID.getOrderStateDesc());
             }
-            return Response.SUCCESS(orderDetailDao.insertOrderDetail(record));
+            record.setCreateTime(new Timestamp(System.currentTimeMillis()));
+            record.setUpdateTime(new Timestamp(System.currentTimeMillis()));
+            record.setOrderId(IdUtil.simpleUUID());
+            orderDetailDao.insertOrderDetail(record);
+            return Response.SUCCESS(record);
         }catch (Exception e){
             return Response.ERROR(e.getMessage());
         }
