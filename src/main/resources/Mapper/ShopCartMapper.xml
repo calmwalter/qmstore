@@ -3,18 +3,18 @@
 <mapper namespace="qmstore.shop_cart.dao.ShopCartDao">
     <select id="getShopCartByUser" parameterType="java.lang.String" resultType="qmstore.shop_cart.pojo.ShopCart">
         SELECT *
-        FROM user
+        FROM shop_cart
         WHERE user_id = #{userId}
     </select>
 
     <select id="getShopCartByGoods" parameterType="java.lang.String" resultType="qmstore.shop_cart.pojo.ShopCart">
         SELECT *
-        FROM user
+        FROM shop_cart
         WHERE goods_id = #{goodsId}
     </select>
 
     <insert id="addShopCart" parameterType="qmstore.shop_cart.pojo.ShopCart">
-        INSERT INTO user
+        INSERT INTO shop_cart
         (user_id, goods_id, goods_num, create_time, update_time)
         VALUES
         (#{userId}, #{goodsId}, #{goodsNum}, #{createTime}, #{updateTime})
@@ -22,12 +22,12 @@
 
     <delete id="deleteShopCartByUserAndGoodsId" parameterType="java.lang.String">
         DELETE
-        FROM user
+        FROM shop_cart
         WHERE user_id = #{userId} AND goods_id = #{GoodsId}
     </delete>
 
     <update id="updateShopCart" parameterType="qmstore.shop_cart.pojo.ShopCart">
-        UPDATE user
+        UPDATE shop_cart
         SET
         goods_num = #{goodsNum},
         update_time = #{updateTIme}
