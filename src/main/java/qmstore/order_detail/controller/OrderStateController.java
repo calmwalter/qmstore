@@ -82,5 +82,16 @@ public class OrderStateController {
         }
     }
 
+    @GetMapping("getAlreadySale")
+        Response getAlreadySale(@DataAuth User user, String goodsId){
+            try {
+                if( user.getUserType().equals(DataType.ADMIN) || user.getUserType().equals(DataType.CUSTOMER)){
+                    return orderDetailManager.getAlreadySale(goodsId);
+                }
+                return Response.NOT_LOG_IN();
+            }catch (Exception e){
+                return Response.ERROR(e.getMessage());
+            }
+        }
 
 }

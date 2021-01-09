@@ -11,4 +11,10 @@
     </update>
     <delete id="delete">delete from goods_detail where goods_id=#{goods_id};</delete>
     <select id="find" resultType="qmstore.goods_detail.pojo.GoodsDetail">select * from goods_detail where goods_id=#{goodsId};</select>
+
+    <select id="getAllByCategory" resultType="qmstore.goods_detail.pojo.GoodsDetail">
+        SELECT *
+        FROM goods_detail
+        WHERE goods_category_code = #{categoryCode}
+    </select>
 </mapper>

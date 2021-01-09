@@ -10,7 +10,8 @@ import java.util.List;
 public interface ShopCartDao {
     public List<ShopCart> getShopCartByUser(String userId);
     public List<ShopCart> getShopCartByGoods(String goodsId);
+    public ShopCart getShopCartByUserIdAndGoodsId(@Param("userId")String userId, @Param("goodsId") String goodsId);
     public void addShopCart(ShopCart shopCart);
-    public void deleteShopCartByUserAndGoodsId(@Param("userId")String userId, @Param("GoodsId") String GoodsId);
+    public void deleteShopCartByUserAndGoodsId(@Param("userId")String userId, @Param("goodsId") String goodsId);
     public void updateShopCart(ShopCart shopCart);
 }

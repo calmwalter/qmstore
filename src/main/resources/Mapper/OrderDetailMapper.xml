@@ -13,12 +13,12 @@
     </delete>
 
     <insert id="insertOrderDetail" parameterType="qmstore.order_detail.pojo.OrderDetail">
-        insert into order_detail ( user_id, goods_id,
+        insert into order_detail ( order_id, user_id, goods_id,
                                   logistics_id, goods_num, goods_price,
                                   goods_amount, order_desc, order_state_code,
                                   order_state_desc, create_time, update_time, address
         )
-        values ( #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR},
+        values ( #{orderId}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR},
                 #{logisticsId,jdbcType=VARCHAR}, #{goodsNum,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE},
                 #{goodsAmount,jdbcType=DOUBLE}, #{orderDesc,jdbcType=VARCHAR}, #{orderStateCode,jdbcType=VARCHAR},
                 #{orderStateDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{address}
@@ -71,5 +71,16 @@
     <select id="getAllOrderDetail" resultType="qmstore.order_detail.pojo.OrderDetail">
         SELECT *
         FROM order_detail
+    </select>
+
+    <select id="getAllOrderByGoodsId" resultType="qmstore.order_detail.pojo.OrderDetail">
+        SELECT *
+        FROM order_detail
+        WHERE goods_id = ${goodsId}
+    </select>
+    <select id="getAlreadySale" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM order_detail
+        WHERE goods_id = ${goodsId}
     </select>
 </mapper>

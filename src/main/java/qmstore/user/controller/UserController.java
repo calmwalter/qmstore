@@ -63,6 +63,18 @@ public class UserController {
         return userManager.UserLogOut();
     }
 
+    @GetMapping("deleteUser")
+    public Response deleteUserByUserId(@DataAuth User user, @RequestParam("userId") String userId){
+        try {
+            if(user.getUserType().equals(DataType.ADMIN)) {
+                return userManager.deleteUserByUserId(userId);
+            }
+            return Response.FAIL("没有权限");
+        }catch (Exception e){
+            return Response.ERROR(e.getMessage());
+        }
+    }
+
 
 
 }

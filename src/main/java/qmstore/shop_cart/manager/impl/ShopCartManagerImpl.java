@@ -27,7 +27,15 @@ public class ShopCartManagerImpl implements ShopCartManager {
 
     @Override
     public Response addShopCart(ShopCart shopCart) {
+        ShopCart temp = shopCartDao.getShopCartByUserIdAndGoodsId(shopCart.getUserId(), shopCart.getGoodsId());
+        if(temp != null && temp.getGoodsNum() >= 0){
+            temp.setGoodsNum(temp.getGoodsNum() + shopCart.getGoodsNum());
+            temp.setUpdateTime(new Timestamp(System.currentTimeMillis()));
+            return updateShopCart(temp);
+        }
         if(shopCart.getGoodsNum() >= 0) {
+            shopCart.setCreateTime(new Timestamp(System.currentTimeMillis()));
+            shopCart.setUpdateTime(new Timestamp(System.currentTimeMillis()));
             shopCartDao.addShopCart(shopCart);
             return Response.SUCCESS();
         }

@@ -19,4 +19,6 @@ public interface UserDao {
 
     public List<User> getAllUser();
 
+    public int deleteUserByUserId(String userId);
+
 }

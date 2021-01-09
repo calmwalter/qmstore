@@ -12,6 +12,11 @@
         FROM shop_cart
         WHERE goods_id = #{goodsId}
     </select>
+    <select id="getShopCartByUserIdAndGoodsId" resultType="qmstore.shop_cart.pojo.ShopCart">
+        SELECT *
+        FROM shop_cart
+        WHERE user_id = #{userId} AND goods_id = #{goodsId}
+    </select>
 
     <insert id="addShopCart" parameterType="qmstore.shop_cart.pojo.ShopCart">
         INSERT INTO shop_cart
@@ -23,14 +28,14 @@
     <delete id="deleteShopCartByUserAndGoodsId" parameterType="java.lang.String">
         DELETE
         FROM shop_cart
-        WHERE user_id = #{userId} AND goods_id = #{GoodsId}
+        WHERE user_id = #{userId} AND goods_id = #{goodsId}
     </delete>
 
     <update id="updateShopCart" parameterType="qmstore.shop_cart.pojo.ShopCart">
         UPDATE shop_cart
         SET
         goods_num = #{goodsNum},
-        update_time = #{updateTIme}
+        update_time = #{updateTime}
         WHERE
         goods_id = #{goodsId} AND user_id = #{userId}
     </update>

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.web.bind.annotation.*;
 import qmstore.goods_detail.dao.GoodsDetailMapper;
 import qmstore.goods_detail.pojo.GoodsDetail;
+import qmstore.util.Response;
 
 
 import javax.annotation.Resource;
@@ -101,6 +102,20 @@ public class  GoodsDetailController {
 
         return res;
 
+    }
+
+
+    @GetMapping("getAllByCategory")
+    public Response getAllByCategory(@RequestParam("categoryCode") String categoryCode){
+        try {
+            if(!categoryCode.equals("-1")) {
+                return Response.SUCCESS(goodsDetailMapper.getAllByCategory(categoryCode));
+            }else {
+                return Response.SUCCESS(goodsDetailMapper.findAll());
+            }
+        }catch (Exception e){
+            return Response.ERROR(e.getMessage());
+        }
     }
 
 }

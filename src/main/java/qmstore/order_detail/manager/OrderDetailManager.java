@@ -17,4 +17,6 @@ public interface OrderDetailManager {
     Response updateOrderDetail(OrderDetail record);
 
     Response getAllOrderDetail();
+
+    Response getAlreadySale(String goodsId);
 }

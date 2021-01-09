@@ -25,4 +25,7 @@ public interface UserManager {
 
     //退出
     public Response UserLogOut();
+
+    //删除用户
+    public Response deleteUserByUserId(String userId);
 }
