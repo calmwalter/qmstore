@@ -37,17 +37,17 @@ public class OrderDetailManagerImpl implements OrderDetailManager {
     public Response insertOrderDetail(OrderDetail record) {
         try {
             //检查价格
-            if(record.getGoodsPrice() == null || record.getGoodsPrice() == 0){
-                if(record.getGoodsAmount() != null && record.getGoodsAmount() != 0 &&
+            if(record.getGoodsAmount() == null || record.getGoodsAmount() == 0){
+                if(record.getGoodsPrice() != null && record.getGoodsPrice() != 0 &&
                 record.getGoodsNum() != null && record.getGoodsNum() != 0) {
-                    record.setGoodsPrice(record.getGoodsAmount() * record.getGoodsNum());
+                    record.setGoodsAmount(record.getGoodsPrice() * record.getGoodsNum());
                 }else {
                     return Response.FAIL("商品数量或单价有误");
                 }
             }else {
-                if(record.getGoodsAmount() != null && record.getGoodsAmount() != 0 &&
+                if(record.getGoodsPrice() != null && record.getGoodsPrice() != 0 &&
                         record.getGoodsNum() != null && record.getGoodsNum() != 0){
-                    if(record.getGoodsPrice() != record.getGoodsAmount() * record.getGoodsAmount()){
+                    if(record.getGoodsAmount() != record.getGoodsPrice() * record.getGoodsNum()){
                         return Response.FAIL("商品总价有误");
                     }
                 }
