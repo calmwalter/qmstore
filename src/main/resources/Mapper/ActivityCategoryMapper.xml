@@ -7,7 +7,7 @@
     <select id="findAll" resultType="qmstore.activity_category.pojo.ActivityCategory">select  *from activity_category;</select>
 
     <insert id="add" parameterType="qmstore.activity_category.pojo.ActivityCategory" useGeneratedKeys="true" keyProperty="id" keyColumn="id">insert into activity_category(activity_id, activity_name,category,activity_desc,start_time,end_time,create_time,update_time)values(#{activityId},#{activityName}, #{category},#{activityDesc},#{startTime},#{endTime}, #{createTime},#{updateTime});</insert>
-    <update id="update" parameterType="qmstore.activity_category.pojo.ActivityCategory">update activity_category set activity_name = #{activityName},category = #{category},activity_desc = #{activityDesc}, start_time = #{startTime}, end_time=#{endTime},update_time=#{updateTime} where id = #{id};
+    <update id="update" parameterType="qmstore.activity_category.pojo.ActivityCategory">update activity_category set activity_name = #{activityName},category = #{category},activity_desc = #{activityDesc}, start_time = #{startTime}, end_time=#{endTime},update_time=#{updateTime} where activity_id = #{activityId};
     </update>
     <delete id="delete">delete from activity_category where activity_id=#{activityId};</delete>
     <select id="find" resultType="qmstore.activity_category.pojo.ActivityCategory">select * from activity_category where activity_id=#{activityId};</select>
