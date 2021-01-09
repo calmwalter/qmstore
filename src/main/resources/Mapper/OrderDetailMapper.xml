@@ -76,11 +76,17 @@
     <select id="getAllOrderByGoodsId" resultType="qmstore.order_detail.pojo.OrderDetail">
         SELECT *
         FROM order_detail
-        WHERE goods_id = ${goodsId}
+        WHERE goods_id = #{goodsId}
     </select>
     <select id="getAlreadySale" resultType="java.lang.Integer">
         SELECT COUNT(*)
         FROM order_detail
-        WHERE goods_id = ${goodsId}
+        WHERE goods_id = #{goodsId}
+    </select>
+
+    <select id="getAllOrderByUserId" resultType="qmstore.order_detail.pojo.OrderDetail">
+        SELECT *
+        FROM order_detail
+        WHERE user_id = #{userId}
     </select>
 </mapper>

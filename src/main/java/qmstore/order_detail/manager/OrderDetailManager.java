@@ -19,4 +19,6 @@ public interface OrderDetailManager {
     Response getAllOrderDetail();
 
     Response getAlreadySale(String goodsId);
+
+    Response getAllOrderByUserId(String userId);
 }

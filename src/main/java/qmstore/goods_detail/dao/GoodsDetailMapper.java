@@ -13,4 +13,5 @@ public interface GoodsDetailMapper {
     int delete(String id);
     ArrayList<GoodsDetail> find(String id);
     List<GoodsDetail> getAllByCategory(String categoryCode);
+    List<GoodsDetail> getBestSale(int num);
 }

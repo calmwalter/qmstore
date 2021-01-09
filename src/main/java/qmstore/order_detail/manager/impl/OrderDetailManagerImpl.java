@@ -89,5 +89,14 @@ public class OrderDetailManagerImpl implements OrderDetailManager {
             return Response.SUCCESS(orderDetailDao.getAlreadySale(goodsId));
         }catch (Exception e){
             return Response.ERROR(e.getMessage());
-        }    }
+        }
+    }
+
+    @Override
+    public Response getAllOrderByUserId(String userId) {
+        try{
+            return Response.SUCCESS(orderDetailDao.getAllOrderByUserId(userId));
+        }catch (Exception e){
+            return Response.ERROR(e.getMessage());
+        }        }
 }

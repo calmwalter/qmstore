@@ -17,4 +17,15 @@
         FROM goods_detail
         WHERE goods_category_code = #{categoryCode}
     </select>
+    <select id="getBestSale" resultType="qmstore.goods_detail.pojo.GoodsDetail">
+        SELECT *
+        FROM goods_detail
+        WHERE goods_id IN (
+            SELECT goods_id
+            FROM order_detail
+            GROUP BY goods_id
+            ORDER BY count(*) DESC
+        )
+        LIMIT num
+    </select>
 </mapper>

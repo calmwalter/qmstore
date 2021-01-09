@@ -117,4 +117,14 @@ public class  GoodsDetailController {
         }
     }
 
+    @GetMapping("bestSale")
+    public Response getBestSale(@RequestParam("num") int num){
+
+        try {
+                return Response.SUCCESS(goodsDetailMapper.getBestSale(num));
+        }catch (Exception e){
+            return Response.ERROR(e.getMessage());
+        }
+    }
+
 }

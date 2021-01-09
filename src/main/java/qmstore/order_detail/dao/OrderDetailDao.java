@@ -20,4 +20,6 @@ public interface OrderDetailDao {
     List<OrderDetail> getAllOrderByGoodsId(String goodsId);
 
     int getAlreadySale(String goodsId);
+
+    List<OrderDetail> getAllOrderByUserId(String userId);
 }

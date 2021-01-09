@@ -94,4 +94,18 @@ public class OrderStateController {
             }
         }
 
+    /**
+     * 根据用户id返回订单号
+     */
+    @GetMapping("getAllOrderByUserId")
+    Response getAllOrderByUserId(@DataAuth User user, String userId){
+        try {
+            if( user.getUserType().equals(DataType.ADMIN) || user.getUserType().equals(DataType.CUSTOMER)){
+                return orderDetailManager.getAllOrderByUserId(userId);
+            }
+            return Response.NOT_LOG_IN();
+        }catch (Exception e){
+            return Response.ERROR(e.getMessage());
+        }
+    }
 }
