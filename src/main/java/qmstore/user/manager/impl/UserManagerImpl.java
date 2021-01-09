@@ -131,6 +131,7 @@ public class UserManagerImpl implements UserManager {
             }
 
             User newUser = new User();
+            newUser.setUserId(user.getUserId());
             newUser.setUserName(user.getUserName());
             newUser.setPassword(user.getFirstPassword());
             newUser.setPhone(user.getPhone());
