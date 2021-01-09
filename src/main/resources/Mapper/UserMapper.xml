@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="qmstore.user.dao.UserDao">
+    <delete id="deleteUserByUserId">
+        BEGIN;
+            DELETE FROM user WHERE user_id = #{userId};
+            DELETE FROM user_address WHERE user_id = #{userId};
+            DELETE FROM shop_cart WHERE user_id = #{userId};
+            DELETE FROM payment_record WHERE order_id IN (SELECT order_id FROM order_detail WHERE user_id = #{userId});
+            DELETE FROM order_detail WHERE user_id = #{userId};
+        COMMIT;
+
+    </delete>
     <select id="getUser" parameterType="String" resultType="qmstore.user.pojo.User">
         SELECT *
         FROM user

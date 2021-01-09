@@ -159,6 +159,15 @@ public class UserManagerImpl implements UserManager {
         }
     }
 
+    @Override
+    public Response deleteUserByUserId(String userId) {
+        try {
+            return Response.SUCCESS(userDao.deleteUserByUserId(userId));
+        }catch (Exception e){
+            return Response.ERROR(e.getMessage());
+        }
+    }
+
 
     private boolean validatePassword(String firstPassword, String secondPassword){
 
@@ -203,6 +212,8 @@ public class UserManagerImpl implements UserManager {
         else
             return false;
     }
+
+
 
 
 }
