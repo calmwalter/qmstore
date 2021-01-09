@@ -16,4 +16,8 @@ public interface OrderDetailDao {
     int updateOrderDetail(OrderDetail record);
 
     List<OrderDetail> getAllOrderDetail();
+
+    List<OrderDetail> getAllOrderByGoodsId(String goodsId);
+
+    int getAlreadySale(String goodsId);
 }
