@@ -7,6 +7,7 @@ import qmstore.order_detail.constant.OrderStateEnum;
 import qmstore.order_detail.dao.OrderDetailDao;
 import qmstore.order_detail.manager.OrderDetailManager;
 import qmstore.order_detail.pojo.OrderDetail;
+import qmstore.shop_cart.dao.ShopCartDao;
 import qmstore.util.Response;
 
 import javax.annotation.Resource;
@@ -16,6 +17,8 @@ import java.sql.Timestamp;
 public class OrderDetailManagerImpl implements OrderDetailManager {
     @Resource
     OrderDetailDao orderDetailDao;
+    @Resource
+    ShopCartDao shopCartDao;
 
     @Override
     public Response deleteByOrderId(String orderId) {
@@ -45,6 +48,8 @@ public class OrderDetailManagerImpl implements OrderDetailManager {
             record.setUpdateTime(new Timestamp(System.currentTimeMillis()));
             record.setOrderId(IdUtil.simpleUUID());
             orderDetailDao.insertOrderDetail(record);
+            shopCartDao.deleteShopCartByUserAndGoodsId(record.getUserId(), record.getGoodsId());
+
             return Response.SUCCESS(record);
         }catch (Exception e){
             return Response.ERROR(e.getMessage());
