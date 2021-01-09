@@ -10,4 +10,5 @@ public class RegisterCondition {
     private String secondPassword;
     private String phone;
     private String email;
+    private String userGroup;
 }
