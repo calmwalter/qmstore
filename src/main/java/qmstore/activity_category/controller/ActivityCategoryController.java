@@ -119,13 +119,13 @@ public class ActivityCategoryController {
     }
 
     @GetMapping("/find")
-    public ActivityCategory find(@RequestParam("id") String id) throws IOException {
+    public ArrayList<ActivityCategory> find(@RequestParam("id") String id) throws IOException {
 //        InputStream inputStream = Resources.getResourceAsStream(resource);
 //        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 //        SqlSession sqlSession = sqlSessionFactory.openSession();
 //        ActivityCategoryMapper activityCategoryMapper = sqlSession.getMapper(ActivityCategoryMapper.class);
 
-        ActivityCategory res = activityCategoryMapper.find(id);
+        ArrayList<ActivityCategory> res = activityCategoryMapper.find(id);
 //        sqlSession.commit();
 //        sqlSession.close();
 //        inputStream.close();
