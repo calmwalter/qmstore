@@ -26,6 +26,6 @@
             GROUP BY goods_id
             ORDER BY count(*) DESC
         )
-        LIMIT num
+        LIMIT 10
     </select>
 </mapper>

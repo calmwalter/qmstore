@@ -118,10 +118,10 @@ public class  GoodsDetailController {
     }
 
     @GetMapping("bestSale")
-    public Response getBestSale(@RequestParam("num") int num){
+        public Response getBestSale(){
 
         try {
-                return Response.SUCCESS(goodsDetailMapper.getBestSale(num));
+                return Response.SUCCESS(goodsDetailMapper.getBestSale());
         }catch (Exception e){
             return Response.ERROR(e.getMessage());
         }

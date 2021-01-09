@@ -1,5 +1,6 @@
 package qmstore.goods_detail.dao;
 
+import org.apache.ibatis.annotations.Param;
 import qmstore.activity_category.pojo.ActivityCategory;
 import qmstore.goods_detail.pojo.GoodsDetail;
 
@@ -13,5 +14,5 @@ public interface GoodsDetailMapper {
     int delete(String id);
     ArrayList<GoodsDetail> find(String id);
     List<GoodsDetail> getAllByCategory(String categoryCode);
-    List<GoodsDetail> getBestSale(int num);
+    List<GoodsDetail> getBestSale();
 }
