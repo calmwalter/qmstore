@@ -78,7 +78,7 @@ public class UserAddressController {
      * @param userId
      * @return
      */
-    @PostMapping("selectUserAddressByUserId")
+    @GetMapping("selectUserAddressByUserId")
     Response selectUserAddressByUserId(@DataAuth User user, @RequestParam("userId") String userId){
         try {
             if(user.getUserType().equals(DataType.CUSTOMER) || user.getUserType().equals(DataType.ADMIN)){
