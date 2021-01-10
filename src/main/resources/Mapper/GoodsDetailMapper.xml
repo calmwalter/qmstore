@@ -28,4 +28,14 @@
         )
         LIMIT 10
     </select>
+
+    <select id="getAllActivityGoods" resultType="qmstore.goods_detail.pojo.GoodsDetail">
+        SELECT *
+        FROM goods_detail
+        WHERE goods_id IN(
+            SELECT goods_id
+            FROM goods_activity
+            GROUP BY goods_id
+            )
+    </select>
 </mapper>

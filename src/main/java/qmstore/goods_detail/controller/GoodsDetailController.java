@@ -117,11 +117,30 @@ public class  GoodsDetailController {
         }
     }
 
+    /**
+     * 得到销量最高的产品
+     * @return
+     */
+
     @GetMapping("bestSale")
         public Response getBestSale(){
 
         try {
                 return Response.SUCCESS(goodsDetailMapper.getBestSale());
+        }catch (Exception e){
+            return Response.ERROR(e.getMessage());
+        }
+    }
+
+    /**
+     * 得到做活动的产品
+     */
+
+    @GetMapping("activityGoods")
+    public Response getAllActivityGoods(){
+
+        try {
+            return Response.SUCCESS(goodsDetailMapper.getAllActivityGoods());
         }catch (Exception e){
             return Response.ERROR(e.getMessage());
         }

@@ -15,4 +15,5 @@ public interface GoodsDetailMapper {
     ArrayList<GoodsDetail> find(String id);
     List<GoodsDetail> getAllByCategory(String categoryCode);
     List<GoodsDetail> getBestSale();
+    List<GoodsDetail> getAllActivityGoods();
 }
