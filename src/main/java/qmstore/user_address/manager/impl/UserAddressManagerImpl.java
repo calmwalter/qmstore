@@ -1,6 +1,8 @@
 package qmstore.user_address.manager.impl;
 
+import cn.hutool.core.util.IdUtil;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import qmstore.user_address.dao.UserAddressDao;
 import qmstore.user_address.manager.UserAddressManager;
 import qmstore.user_address.pojo.UserAddress;
@@ -16,6 +18,11 @@ public class UserAddressManagerImpl implements UserAddressManager {
     @Override
     public Response insertUserAddress(UserAddress userAddress) {
         try{
+            System.out.println("UserAddressManagerImpl insertUserAddress");
+            if(StringUtils.isEmpty(userAddress.getAddressId())){
+                System.out.println("serAddress.getAddressId().isEmpty(");
+                userAddress.setAddressId(IdUtil.simpleUUID());
+            }
             return Response.SUCCESS(userAddressDao.insertUserAddress(userAddress));
         }catch (Exception e) {
             return Response.ERROR(e.getMessage());

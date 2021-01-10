@@ -25,7 +25,10 @@ public class UserAddressController {
     @PostMapping("insertUserAddress")
     Response insertUserAddress(@DataAuth User user, @RequestBody UserAddress userAddress){
         try {
+            System.out.println("insertUserAddress");
             if(user.getUserType().equals(DataType.CUSTOMER) || user.getUserType().equals(DataType.ADMIN)){
+                System.out.println("" +
+                        "insertUserAddress user.getUserType().equals ");
                 return userAddressManager.insertUserAddress(userAddress);
             }
             return Response.NOT_LOG_IN();
