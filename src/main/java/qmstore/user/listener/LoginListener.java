@@ -14,8 +14,7 @@ public class LoginListener implements ServletRequestListener {
         /**
          * 移除当前线程绑定的用户数据，防止内存泄露
          */
-//        System.out.println("移除当前线程绑定的用户数据，防止内存泄露");
-//        UserUtil.remove();
+        UserUtil.threadRemove();
     }
 
     @Override

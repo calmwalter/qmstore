@@ -16,17 +16,11 @@ public class UserUtil {
         USER.set(user);
         HttpSession session = getSession();
         session.setAttribute(SESSION_USER, user);
-        System.out.println("public static void set(User user) session getAttribute = " + session.getAttribute(SESSION_USER));
-        System.out.println("public static void set(User user) UserUtil.get() = " + UserUtil.get());
+
     }
 
     public static User get() {
-        System.out.println( " public static User get()  当前线程 get：" + Thread.currentThread().getName() );
-        System.out.println("public static User get()" + USER.get());
-        System.out.println("public static User session" + getSession());
-        System.out.println("public static User session id" + getSession().getId());
 
-        System.out.println(getSession().getAttribute(SESSION_USER));
         if(getSession().getAttribute(SESSION_USER) != null){
             USER.set((User) getSession().getAttribute(SESSION_USER));
             return (User) getSession().getAttribute(SESSION_USER);
@@ -37,6 +31,10 @@ public class UserUtil {
     public static void remove(){
         HttpSession session = getSession();
         session.removeAttribute(SESSION_USER);
+        USER.remove();
+    }
+
+    public static void threadRemove(){
         USER.remove();
     }
 
